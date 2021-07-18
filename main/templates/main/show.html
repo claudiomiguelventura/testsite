@@ -1,0 +1,41 @@
+# show.html
+{% extends "main/base.html" %}
+
+{% block title %}
+Rain in {{district}}
+{% endblock %}
+
+{% block content %}
+<h3 class="mt-2">{{district.capitalize}}, {{county.capitalize}}</h3>
+<hr class="mt-0 mb-4">
+<p></p>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Minimum (mm)</th>
+        <th scope="col">Maximum (mm)</th>
+        <th scope="col">Range (mm)</th>
+        <th scope="col">Mean (mm)</th>
+        <th scope="col">Std (mm)</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for rd in rt.rainday_set.all %}
+            {% if rd.rd_maximum > 0 %}
+            <tr class="table-info">
+            {% else %}
+            <tr class="table-light">
+            {% endif %}
+            <th scope="row">{{rd.rd_date}}</th>
+            <td>{{rd.rd_minimum}}</td>
+            <td>{{rd.rd_maximum}}</td>
+            <td>{{rd.rd_range}}</td>
+            <td>{{rd.rd_mean}}</td>
+            <td>{{rd.rd_std}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

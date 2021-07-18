@@ -1,0 +1,23 @@
+# view.html
+{% extends "main/base.html" %}
+
+{% block title %}
+View
+{% endblock %}
+
+{% block content %}
+
+    {% for district in districtList %}
+        <h3 class="mt-2">{{district.capitalize}}</h3>
+        <hr class="mt-0 mb-4">    
+        <div class="list-group">
+        {% for rt in allrt %}
+            {% if rt.district == district %}
+                <a href="/{{rt.district}}/{{rt.county}}" class="list-group-item list-group-item-action">{{rt.county.capitalize}}</a>
+            {% endif %}        
+        {% endfor %}
+        <hr class="mt-0 mb-4"> 
+        </div>
+        {% endfor %}
+
+{% endblock %}
