@@ -64,7 +64,7 @@ def create(response):
     return HttpResponseRedirect("/login")
 
 def view(response):
-    if response.user.is_authenticated:
+    #if response.user.is_authenticated:
         allrt = RainTable.objects.all()
         districtList = []
         for rt in allrt:
@@ -72,7 +72,7 @@ def view(response):
                 districtList.append(rt.district)
             
         return render(response, "main/view.html", {"allrt":allrt, "districtList":districtList})
-    return HttpResponseRedirect("/login")
+    #return HttpResponseRedirect("/login")
 
 def show(response, district, county):
     if response.user.is_authenticated:
